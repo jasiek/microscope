@@ -1,24 +1,18 @@
 # Microscope
 
-TODO: Write a gem description
+The aim of this project is to develop a class/module/method browser similar to those available within Smalltalk environments, such as Pharo, Squeak or VisualWorks.
 
-## Installation
+![VisualWorks code browser](https://github.com/jasiek/microscope/raw/master/vwbrowser.png)
 
-Add this line to your application's Gemfile:
+## What does it look like now?
 
-    gem 'microscope'
+![Microscope code browser](https://github.com/jasiek/microscope/raw/master/progress.png)
 
-And then execute:
+## Running
 
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install microscope
-
-## Usage
-
-TODO: Write usage instructions here
+```
+$ ruby test.rb
+```
 
 ## Contributing
 
@@ -27,3 +21,11 @@ TODO: Write usage instructions here
 3. Commit your changes (`git commit -am 'Added some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## License
+
+MIT
+
+## Other
+
+Some icons by Yusuke Kamiyamane (http://p.yusukekamiyamane.com/). All rights reserved. Licensed under a Creative Commons Attribution 3.0 License. (http://creativecommons.org/licenses/by/3.0/).
