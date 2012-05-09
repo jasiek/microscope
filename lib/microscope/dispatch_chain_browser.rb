@@ -52,14 +52,16 @@ module Microscope
     end
 
     def on_select
-      @scope.select_particular_module(eval(@dc_browser.focus_item.path))
+      @scope.select_particular_module(@ancestors[@dc_browser.focus_item.path])
     end
 
     def refresh
       clear
+      @ancestors = {}
       @current_module.ancestors.each do |ancestor|
-        @dc_browser.insert('', 0, :id => ancestor.inspect, :text => ancestor.inspect)
-        @dc_browser.itemconfigure(ancestor.inspect, 'image', (ancestor.class == Module) ? Images::MODULE : Images::CLASS)
+        @ancestors[ancestor_name = ancestor.name] = ancestor
+        @dc_browser.insert('', 0, :id => ancestor_name, :text => ancestor_name)
+        @dc_browser.itemconfigure(ancestor_name, 'image', (ancestor.class == Module) ? Images::MODULE : Images::CLASS)
       end
       @dc_browser.itemconfigure('', 'open', true)
     end
