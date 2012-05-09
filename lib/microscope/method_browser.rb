@@ -4,6 +4,7 @@ module Microscope
 
     def initialize(scope)
       @selected_class = Object
+      @selected_ancestor = Object
       @scope = scope
       @parent = scope.root
 
@@ -78,9 +79,10 @@ module Microscope
     def on_im_select
     end
 
-    def change_class(_class)
+    def select_particular_ancestor(_class, _ancestor)
       clear
       @selected_class = _class
+      @selected_ancestor = _ancestor
       refresh
     end
 
@@ -88,9 +90,9 @@ module Microscope
       @selected_class.methods.sort.each do |method|
         @cm_browser.insert('', 'end', :id => method, :text => method)
       end
-      @selected_class.instance_methods.sort.each do |selector|
+      @selected_ancestor.instance_methods.sort.each do |selector|
         @im_browser.insert('', 'end', :id => selector, :text => selector)
-        @im_browser.itemconfigure(selector, 'image', (@selected_class.instance_method(selector).owner == @selected_class) ? Images::EMPTY : Images::ARROW_UP)
+        @im_browser.itemconfigure(selector, 'image', image_for_selector(selector))
       end
     end
 
@@ -101,6 +103,13 @@ module Microscope
       @im_browser.children('').each do |child_id|
         @im_browser.delete(child_id)
       end
+    end
+
+    def image_for_selector(selector)
+      # Defined in this ancestor
+      return Images::EMPTY if @selected_class.instance_method(selector).owner == @selected_ancestor
+      # Defined above
+      # Overridden below
     end
   end
 end

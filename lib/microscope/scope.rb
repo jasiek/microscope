@@ -53,11 +53,11 @@ module Microscope
     end
 
     def select_class(_class)
-      @dc_browser.change_module(_class)
+      @dc_browser.change_module(@_class = _class)
     end
 
-    def select_particular_module(_module)
-      @method_browser.change_class(_module)
+    def select_particular_module(_ancestor)
+      @method_browser.select_particular_ancestor(@_class, _ancestor)
     end
 
     def run
