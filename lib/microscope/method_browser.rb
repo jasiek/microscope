@@ -7,6 +7,7 @@ module Microscope
       @selected_ancestor = Object
       @scope = scope
       @parent = scope.root
+      @code_index = CodeIndex.instance
 
       initialize_frame
       initialize_class_method_listbox
@@ -107,9 +108,23 @@ module Microscope
 
     def image_for_selector(selector)
       # Defined in this ancestor
-      return Images::EMPTY if @selected_class.instance_method(selector).owner == @selected_ancestor
-      # Defined above
-      # Overridden below
+      selected_ancestor_index = @selected_class.ancestors.index(@selected_ancestor)
+      implementors_indices = @code_index.implementors(selector).map do |mod|
+        @selected_class.ancestors.index(mod)
+      end.reject do |idx|
+        idx.nil?
+      end
+      overridden = overriding = false
+      if implementors_indices.find { |i| i < selected_ancestor_index }
+        overridden = true
+      end
+      if implementors_indices.find { |i| i > selected_ancestor_index }
+        overriding = true
+      end
+      return Images::ARROW_UPDOWN if overridden && overriding
+      return Images::ARROW_UP if overriding
+      return Images::ARROW_DOWN if overridden
+      return Images::EMPTY
     end
   end
 end
