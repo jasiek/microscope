@@ -16,4 +16,7 @@ module Microscope
   def self.run
     Scope.new.run
   end
+
+  TOP_BROWSER_HEIGHT = 12
+  CODE_BROWSER_HEIGHT = 12
 end

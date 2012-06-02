@@ -23,7 +23,7 @@ module Microscope
 
     def initialize_classes_listbox
       @cls_browser = Tk::Tile::Treeview.new(@frame)
-      @cls_browser.height(20)
+      @cls_browser.height(TOP_BROWSER_HEIGHT)
       @cls_browser.selectmode('browse')
       @cls_browser.grid(:column => 0, :row => 0, :sticky => 'nwes')
     end

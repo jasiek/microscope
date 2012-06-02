@@ -24,7 +24,7 @@ module Microscope
 
     def initialize_dispatch_chain_listbox
       @dc_browser = Tk::Tile::Treeview.new(@frame)
-      @dc_browser.height(20)
+      @dc_browser.height(TOP_BROWSER_HEIGHT)
       @dc_browser.selectmode('browse')
       @dc_browser.grid(:column => 0, :row => 0, :sticky => 'nwes')
     end

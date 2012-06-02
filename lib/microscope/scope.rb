@@ -15,20 +15,19 @@ module Microscope
 
     def initialize_root
       @root = TkRoot.new('title' => 'Microscope')
-      @root.geometry("800x600")
     end
 
     def initialize_split_pane1
       @split_pane1 = TkPanedWindow.new(@root)
       @split_pane1.orient('vertical')
-      @split_pane1.grid(:column => 0, :row => 0, :sticky => 'nwes')
+      @split_pane1.pack
     end
 
     def initialize_split_pane2
       @split_pane2 = TkPanedWindow.new(@root) do
         orient('horizontal')
       end
-      @split_pane2.grid(:column => 0, :row => 0, :sticky => 'nwes')
+      @split_pane2.pack
       @split_pane1.add(@split_pane2, {})
     end
 
