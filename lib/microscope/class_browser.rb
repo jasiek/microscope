@@ -50,13 +50,14 @@ module Microscope
 
     def refresh
       @classes = []
-      ObjectSpace.each_object(Class) do |_class|
+      ObjectSpace.each_object(Module) do |_class|
         @classes << _class
       end
       @class_resolver = {}
       @classes.sort_by(&:inspect).each do |_class|
         @class_resolver[class_name = _class.inspect] = _class
         @cls_browser.insert('', 'end', :id => class_name, :text => class_name) unless @cls_browser.exist?(class_name)
+        @cls_browser.itemconfigure(class_name, 'image', _class.class == Module ? Images::MODULE : Images::CLASS)
       end
     end
   end

@@ -52,7 +52,8 @@ module Microscope
 
       @disassembly_text.delete('0.0', 'end')
       @disassembly_text.insert('end', current_method_disassembly)
-    rescue 
+    rescue
+      puts ["code not found for", @current_class, @current_selector].join(' ')
       # Do nothing, the code box will be empty.
     ensure
       @source_text.state('disabled')
