@@ -22,7 +22,7 @@ module Microscope
     def initialize_source_frame
       @source_frame = Tk::Tile::Frame.new(@frame)
       @source_text = Tk::Text.new(@source_frame)
-      @source_text.pack(:side => 'left')
+      @source_text.pack
       @source_text.state('disabled')
       @frame.add(@source_frame, {:text => 'source'})
     end
@@ -30,7 +30,7 @@ module Microscope
     def initialize_disassembly_frame
       @disassembly_frame = Tk::Tile::Frame.new(@frame)
       @disassembly_text = TkText.new(@disassembly_frame)
-      @disassembly_text.pack(:side => 'left')
+      @disassembly_text.pack
       @disassembly_text.state('disabled')
       @frame.add(@disassembly_frame, {:text => 'bytecode'})
     end
