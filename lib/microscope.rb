@@ -1,5 +1,6 @@
 require 'tk'
 require 'tkextlib/tile'
+require 'method_source'
 require "microscope/version"
 
 module Microscope
@@ -10,6 +11,7 @@ module Microscope
   autoload :CodeViewer           , 'microscope/code_viewer'
   autoload :Images               , 'microscope/images'
   autoload :CodeIndex            , 'microscope/code_index'
+  autoload :Fonts                , 'microscope/fonts'
   
   def self.run
     Scope.new.run

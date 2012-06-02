@@ -1,3 +1,5 @@
+require 'pp'
+
 module Microscope
   class MethodBrowser
     attr_reader :frame
@@ -78,6 +80,7 @@ module Microscope
     end
 
     def on_im_select
+      @scope.select_instance_method(@im_browser.focus_item.path)
     end
 
     def select_particular_ancestor(_class, _ancestor)
@@ -116,9 +119,11 @@ module Microscope
       end
       overridden = overriding = false
       if implementors_indices.find { |i| i < selected_ancestor_index }
+        # An overridden version of this method exists in a subclass
         overridden = true
       end
       if implementors_indices.find { |i| i > selected_ancestor_index }
+        # This ancestor overrides a method that exists in a superclass
         overriding = true
       end
       return Images::ARROW_UPDOWN if overridden && overriding

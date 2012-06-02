@@ -60,6 +60,10 @@ module Microscope
       @method_browser.select_particular_ancestor(@_class, _ancestor)
     end
 
+    def select_instance_method(selector)
+      @code_viewer.select_class_and_method(@_class, selector)
+    end
+
     def run
       Tk.mainloop
     end
